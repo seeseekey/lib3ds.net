@@ -15,7 +15,7 @@ namespace lib3ds.Net
 		{
 			Lib3dsChunk c=new Lib3dsChunk();
 			Lib3dsChunks chunk;
-			bool have_lin=false;
+			//bool have_lin=false;
 
 			lib3ds_chunk_read_start(c, Lib3dsChunks.CHK_SOLID_BGND, io);
 
@@ -25,7 +25,7 @@ namespace lib3ds.Net
 				{
 					case Lib3dsChunks.CHK_LIN_COLOR_F:
 						lib3ds_io_read_rgb(io, background.solid_color);
-						have_lin=true;
+						//have_lin=true;
 						break;
 					case Lib3dsChunks.CHK_COLOR_F:
 						lib3ds_io_read_rgb(io, background.solid_color);
