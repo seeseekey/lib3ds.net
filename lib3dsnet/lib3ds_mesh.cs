@@ -62,7 +62,7 @@ namespace lib3ds.Net
 			}
 			else mesh.vertices=null;
 
-			ushort tmp=(ushort)(use_texcos?nvertices:0);
+			ushort tmp=(ushort)(use_texcos?nvertices:(ushort)0);
 			if(tmp>0)
 			{
 				if(mesh.texcos==null) mesh.texcos=new List<Lib3dsTexturecoordinate>();
@@ -71,7 +71,7 @@ namespace lib3ds.Net
 			}
 			else mesh.texcos=null;
 
-			tmp=(ushort)(use_flags?nvertices:0);
+			tmp=(ushort)(use_flags?nvertices:(ushort)0);
 			if(tmp>0)
 			{
 				if(mesh.vflags==null) mesh.vflags=new List<ushort>();
