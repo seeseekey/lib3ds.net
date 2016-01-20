@@ -34,7 +34,7 @@ namespace lib3ds.Net
 	public class Lib3dsIo
 	{
 		internal int log_indent;
-		public FileStream self;
+		public Stream self;
 		public seek_func seek_func;
 		public tell_func tell_func;
 		public read_func read_func;

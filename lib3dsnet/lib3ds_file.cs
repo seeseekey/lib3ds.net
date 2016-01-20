@@ -68,25 +68,42 @@ namespace lib3ds.Net
 
 				try
 				{
-					Lib3dsIo io=new Lib3dsIo();
-					io.self=f;
-					io.seek_func=fileio_seek_func;
-					io.tell_func=fileio_tell_func;
-					io.read_func=fileio_read_func;
-					io.write_func=fileio_write_func;
-					io.log_func=log_func;
-
-					Lib3dsFile file=lib3ds_file_new();
-					if(file==null) return null;
-
-					if(!lib3ds_file_read(file, io)) return null;
-
-					return file;
+					return lib3ds_file_open(f, log_func);
 				}
 				finally
 				{
 					f.Close();
 				}
+			}
+			catch
+			{
+				return null;
+			}
+		}
+
+		public static Lib3dsFile lib3ds_file_open(Stream stream)
+		{
+			return lib3ds_file_open(stream, null);
+		}
+
+		public static Lib3dsFile lib3ds_file_open(Stream stream, log_func log_func)
+		{
+			try
+			{
+				Lib3dsIo io=new Lib3dsIo();
+				io.self=stream;
+				io.seek_func=fileio_seek_func;
+				io.tell_func=fileio_tell_func;
+				io.read_func=fileio_read_func;
+				io.write_func=fileio_write_func;
+				io.log_func=log_func;
+
+				Lib3dsFile file=lib3ds_file_new();
+				if(file==null) return null;
+
+				if(!lib3ds_file_read(file, io)) return null;
+
+				return file;
 			}
 			catch
 			{
@@ -870,7 +887,7 @@ namespace lib3ds.Net
 		public static Lib3dsMesh lib3ds_file_mesh_for_node(Lib3dsFile file, Lib3dsNode node)
 		{
 			if(node.type!=Lib3dsNodeType.LIB3DS_NODE_MESH_INSTANCE) return null;
-			Lib3dsMeshInstanceNode n=(Lib3dsMeshInstanceNode)node;
+			//Lib3dsMeshInstanceNode n=(Lib3dsMeshInstanceNode)node;
 			int index=lib3ds_file_mesh_by_name(file, node.name);
 			return (index>=0)?file.meshes[index]:null;
 		}
