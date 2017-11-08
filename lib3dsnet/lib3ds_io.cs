@@ -106,7 +106,7 @@ namespace lib3ds.Net
 			Debug.Assert(io!=null);
 			byte[] b=new byte[4];
 			lib3ds_io_read(io, b, 4);
-			return (uint)((b[3]<<23)|(b[2]<<16)|(b[1]<<8)|b[0]);
+			return (uint)((b[3]<<24)|(b[2]<<16)|(b[1]<<8)|b[0]);
 		}
 
 		// Read a signed byte from a file stream.
@@ -133,7 +133,7 @@ namespace lib3ds.Net
 			Debug.Assert(io!=null);
 			byte[] b=new byte[4];
 			lib3ds_io_read(io, b, 4);
-			return (int)((b[3]<<23)|(b[2]<<16)|(b[1]<<8)|b[0]);
+			return (int)((b[3]<<24)|(b[2]<<16)|(b[1]<<8)|b[0]);
 		}
 
 		// Read a float from a file stream in little endian format.
